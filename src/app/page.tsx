@@ -1,9 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sparkles, User, Briefcase, Search, FileCheck } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { placeholderImages } from '@/lib/data';
 
 const features = [
   {
@@ -29,20 +27,19 @@ const features = [
 ];
 
 export default function Home() {
-  const heroImage = placeholderImages.find(p => p.id === 'hero-students');
 
   return (
     <div className="flex flex-col">
       <section className="py-20 md:py-32 bg-card">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+        <div className="container mx-auto px-4 text-center">
+          <div className="space-y-6 max-w-2xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline font-bold tracking-tighter">
               Find Your Perfect <span className="text-primary">PM Internship</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-lg">
+            <p className="text-lg text-muted-foreground">
               Leverage the power of AI to connect with top tech companies and launch your career in product management. Your dream internship is just a match away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                 <Link href="/signin">Get Started</Link>
               </Button>
@@ -50,19 +47,6 @@ export default function Home() {
                 <Link href="/internships">Browse Internships</Link>
               </Button>
             </div>
-          </div>
-          <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden shadow-2xl">
-            {heroImage && (
-              <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                data-ai-hint={heroImage.imageHint}
-                fill
-                className="object-cover"
-                priority
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
           </div>
         </div>
       </section>
