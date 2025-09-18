@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield, User, LogOut, LogIn } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Sparkles, User, LogOut, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from './icons';
 import { cn } from '@/lib/utils';
@@ -22,7 +22,6 @@ const navItems = [
     { href: '/internships', label: 'Internships', icon: <Briefcase className="h-4 w-4" /> },
     { href: '/recommendations', label: 'AI Matches', icon: <Sparkles className="h-4 w-4" />, auth: true },
     { href: '/profile', label: 'Student Profile', icon: <User className="h-4 w-4" />, auth: true },
-    { href: '/admin', label: 'Admin', icon: <Shield className="h-4 w-4" /> },
 ];
 
 export default function Header() {
