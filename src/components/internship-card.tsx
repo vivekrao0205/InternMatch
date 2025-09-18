@@ -30,9 +30,9 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
             <Image
               src={logo.imageUrl}
               alt={`${internship.company} logo`}
-              width={56}
-              height={56}
-              className="object-contain"
+              width={64}
+              height={64}
+              className="object-contain rounded-sm"
               data-ai-hint={logo.imageHint}
             />
           </div>

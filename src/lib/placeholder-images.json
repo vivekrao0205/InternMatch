@@ -2,44 +2,44 @@
   "placeholderImages": [
     {
       "id": "hero-students",
-      "description": "A group of diverse students collaborating on a project in a modern office.",
-      "imageUrl": "https://picsum.photos/seed/1/1200/800",
-      "imageHint": "students collaborating"
+      "description": "A group of diverse professionals collaborating in a modern office setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2070&auto=format&fit=crop",
+      "imageHint": "professionals collaborating"
     },
     {
       "id": "logo-techcorp",
       "description": "Logo for TechCorp",
-      "imageUrl": "https://picsum.photos/seed/logo1/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop",
       "imageHint": "modern logo"
     },
     {
       "id": "logo-innovate",
       "description": "Logo for Innovate Inc.",
-      "imageUrl": "https://picsum.photos/seed/logo2/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?q=80&w=400&auto=format&fit=crop",
       "imageHint": "geometric logo"
     },
     {
       "id": "logo-datanex",
       "description": "Logo for DataNex",
-      "imageUrl": "https://picsum.photos/seed/logo3/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=400&auto=format&fit=crop",
       "imageHint": "minimalist logo"
     },
     {
       "id": "logo-synergy",
       "description": "Logo for Synergy Solutions",
-      "imageUrl": "https://picsum.photos/seed/logo4/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?q=80&w=400&auto=format&fit=crop",
       "imageHint": "abstract logo"
     },
     {
       "id": "logo-quantum",
       "description": "Logo for QuantumLeap",
-      "imageUrl": "https://picsum.photos/seed/logo5/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=400&auto=format&fit=crop",
       "imageHint": "tech logo"
     },
     {
       "id": "logo-pioneer",
       "description": "Logo for Pioneer Dynamics",
-      "imageUrl": "https://picsum.photos/seed/logo6/200/200",
+      "imageUrl": "https://images.unsplash.com/photo-1554034483-043a39527586?q=80&w=400&auto=format&fit=crop",
       "imageHint": "bold logo"
     }
   ]
