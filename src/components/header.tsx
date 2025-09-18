@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from './icons';
 import { cn } from '@/lib/utils';
@@ -20,6 +20,7 @@ const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
     { href: '/internships', label: 'Internships', icon: <Briefcase className="h-4 w-4" /> },
     { href: '/recommendations', label: 'AI Matches', icon: <Sparkles className="h-4 w-4" /> },
+    { href: '/profile', label: 'Student Profile', icon: <User className="h-4 w-4" /> },
     { href: '/post-internship', label: 'Post Job', icon: <PlusCircle className="h-4 w-4" /> },
     { href: '/admin', label: 'Admin', icon: <Shield className="h-4 w-4" /> },
 ];

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -38,7 +39,7 @@ export default function ProfilePage() {
     defaultValues: {
       name: mockProfile.name,
       email: mockProfile.email,
-      skills: mockProfile.skills.join(', '),
+      skills: mockP rofile.skills.join(', '),
       qualifications: mockProfile.qualifications,
       preferences: mockProfile.preferences,
     },
