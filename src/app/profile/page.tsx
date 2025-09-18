@@ -39,7 +39,7 @@ export default function ProfilePage() {
     defaultValues: {
       name: mockProfile.name,
       email: mockProfile.email,
-      skills: mockP rofile.skills.join(', '),
+      skills: mockProfile.skills.join(', '),
       qualifications: mockProfile.qualifications,
       preferences: mockProfile.preferences,
     },
