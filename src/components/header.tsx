@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogIn, LogOut, User, LayoutDashboard, Briefcase, Sparkles, PlusCircle } from 'lucide-react';
+import { LogIn, LogOut, User, LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -49,6 +49,7 @@ const navItems = [
     { href: '/internships', label: 'Internships', icon: <Briefcase className="h-4 w-4" /> },
     { href: '/recommendations', label: 'AI Matches', icon: <Sparkles className="h-4 w-4" /> },
     { href: '/post-internship', label: 'Post Job', icon: <PlusCircle className="h-4 w-4" /> },
+    { href: '/admin', label: 'Admin', icon: <Shield className="h-4 w-4" /> },
 ];
 
 export default function Header() {
