@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Logo } from './icons';
-import { signOut, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { cn } from '@/lib/utils';
 import {
@@ -26,22 +26,8 @@ import {
 } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import AuthButton from './auth-button';
 
-
-const handleSignIn = async (toast: (options: any) => void) => {
-  const provider = new GoogleAuthProvider();
-  try {
-    await signInWithPopup(auth, provider);
-  } catch (error) {
-    console.error('Error signing in with Google', error);
-    toast({
-        title: 'Sign-in Failed',
-        description: 'Could not sign in with Google. Please try again.',
-        variant: 'destructive'
-    });
-  }
-};
 
 const handleSignOut = async () => {
   try {
@@ -63,7 +49,6 @@ export default function Header() {
   const { user } = useAuth();
   const pathname = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { toast } = useToast();
 
   const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => (
     <nav className={cn("items-center space-x-6 text-sm font-medium", isMobile ? 'flex flex-col space-x-0 space-y-4 pt-6' : 'hidden md:flex')}>
@@ -134,10 +119,10 @@ export default function Header() {
             </DropdownMenu>
           ) : (
             pathname !== '/signin' && (
-                <Button onClick={() => handleSignIn(toast)} variant="ghost">
+                <AuthButton>
                   <LogIn className="mr-2 h-4 w-4" />
                   Sign In
-                </Button>
+                </AuthButton>
             )
           )}
 
