@@ -33,6 +33,16 @@ function getStatusVariant(status: Application['status']): 'default' | 'secondary
     }
 }
 
+function FormattedDate({ dateString }: { dateString: string }) {
+    const [formattedDate, setFormattedDate] = useState('');
+    useEffect(() => {
+        setFormattedDate(new Date(dateString).toLocaleDateString());
+    }, [dateString]);
+
+    return <>{formattedDate}</>;
+}
+
+
 function ApplicationCard({ application }: { application: Application }) {
     return (
       <Card className="hover:shadow-md transition-shadow duration-300">
@@ -45,7 +55,7 @@ function ApplicationCard({ application }: { application: Application }) {
                   </div>
                   <Badge variant={getStatusVariant(application.status)} className="ml-4 whitespace-nowrap">{application.status}</Badge>
               </div>
-              <p className="text-sm text-muted-foreground mt-2">Applied on: {new Date(application.appliedDate).toLocaleDateString()}</p>
+              <p className="text-sm text-muted-foreground mt-2">Applied on: <FormattedDate dateString={application.appliedDate} /></p>
             </div>
             <Button variant="ghost" size="icon" className="hidden sm:flex" asChild>
                 <Link href={`/internships`}>
