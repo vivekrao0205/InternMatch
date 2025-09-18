@@ -7,40 +7,94 @@
       "imageHint": "professionals collaborating"
     },
     {
-      "id": "logo-techcorp",
-      "description": "Logo for TechCorp",
+      "id": "logo-reliance",
+      "description": "Logo for Reliance Industries",
       "imageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop",
       "imageHint": "modern logo"
     },
     {
-      "id": "logo-innovate",
-      "description": "Logo for Innovate Inc.",
-      "imageUrl": "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?q=80&w=400&auto=format&fit=crop",
-      "imageHint": "geometric logo"
-    },
-    {
-      "id": "logo-datanex",
-      "description": "Logo for DataNex",
+      "id": "logo-tcs",
+      "description": "Logo for Tata Consultancy Services",
       "imageUrl": "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=400&auto=format&fit=crop",
-      "imageHint": "minimalist logo"
+      "imageHint": "corporate logo"
     },
     {
-      "id": "logo-synergy",
-      "description": "Logo for Synergy Solutions",
+      "id": "logo-hdfc",
+      "description": "Logo for HDFC Bank",
+      "imageUrl": "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "bank logo"
+    },
+    {
+      "id": "logo-infosys",
+      "description": "Logo for Infosys",
       "imageUrl": "https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?q=80&w=400&auto=format&fit=crop",
-      "imageHint": "abstract logo"
+      "imageHint": "tech company logo"
     },
     {
-      "id": "logo-quantum",
-      "description": "Logo for QuantumLeap",
+      "id": "logo-wipro",
+      "description": "Logo for Wipro",
       "imageUrl": "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=400&auto=format&fit=crop",
-      "imageHint": "tech logo"
+      "imageHint": "abstract company logo"
     },
     {
-      "id": "logo-pioneer",
-      "description": "Logo for Pioneer Dynamics",
+      "id": "logo-icici",
+      "description": "Logo for ICICI Bank",
       "imageUrl": "https://images.unsplash.com/photo-1554034483-043a39527586?q=80&w=400&auto=format&fit=crop",
-      "imageHint": "bold logo"
+      "imageHint": "financial logo"
+    },
+    {
+      "id": "logo-airtel",
+      "description": "Logo for Bharti Airtel",
+      "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "telecom logo"
+    },
+    {
+      "id": "logo-lt",
+      "description": "Logo for Larsen & Toubro",
+      "imageUrl": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "engineering logo"
+    },
+    {
+      "id": "logo-hcl",
+      "description": "Logo for HCL Technologies",
+      "imageUrl": "https://images.unsplash.com/photo-1612810817923-1b0b5a3e1b0b?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "IT services logo"
+    },
+    {
+      "id": "logo-adani",
+      "description": "Logo for Adani Group",
+      "imageUrl": "https://images.unsplash.com/photo-1549924233-388d9241a2c5?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "conglomerate logo"
+    },
+    {
+      "id": "logo-axis",
+      "description": "Logo for Axis Bank",
+      "imageUrl": "https://images.unsplash.com/photo-1628191011227-5224c43e382b?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "modern bank logo"
+    },
+    {
+      "id": "logo-maruti",
+      "description": "Logo for Maruti Suzuki",
+      "imageUrl": "https://images.unsplash.com/photo-1631613261711-1e3a831c7e6d?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "automotive logo"
+    },
+    {
+      "id": "logo-mahindra",
+      "description": "Logo for Mahindra & Mahindra",
+      "imageUrl": "https://images.unsplash.com/photo-1631613261711-1e3a831c7e6d?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "car company logo"
+    },
+    {
+      "id": "logo-bajaj",
+      "description": "Logo for Bajaj Finance",
+      "imageUrl": "https://images.unsplash.com/photo-1611933739775-8024c0f33e0c?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "finance logo"
+    },
+    {
+      "id": "logo-techm",
+      "description": "Logo for Tech Mahindra",
+      "imageUrl": "https://images.unsplash.com/photo-1611162616801-44d5a1b39e3f?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "tech solutions logo"
     }
   ]
 }
