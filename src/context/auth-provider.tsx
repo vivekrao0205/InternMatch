@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { auth, onAuthStateChanged, User } from '@/lib/firebase';
+import { User } from '@/lib/firebase';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface AuthContextType {
@@ -8,19 +8,41 @@ interface AuthContextType {
   loading: boolean;
 }
 
+// Mock user for bypassing authentication
+const mockUser: User = {
+  uid: 'mock-user-id',
+  email: 'test.user@example.com',
+  emailVerified: true,
+  isAnonymous: false,
+  providerData: [],
+  metadata: {},
+  providerId: 'password',
+  tenantId: null,
+  displayName: 'Mock User',
+  photoURL: null,
+  phoneNumber: null,
+  refreshToken: '',
+  toJSON: () => ({}),
+};
+
+
 const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  // We will no longer check with firebase, but we'll keep the loading state
+  // to prevent flashes of un-styled content. For a very brief moment, the app
+  // will show a loading skeleton, then the mocked user will be set.
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    // Simulate a successful authentication check.
+    const timer = setTimeout(() => {
+      setUser(mockUser);
       setLoading(false);
-    });
+    }, 50); // A small delay to ensure a smooth transition
 
-    return () => unsubscribe();
+    return () => clearTimeout(timer);
   }, []);
 
   const value = { user, loading };

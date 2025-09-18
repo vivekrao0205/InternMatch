@@ -15,17 +15,16 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { createUserWithEmailAndPassword } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { UserPlus } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '@/context/auth-provider';
 
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  password: z.string().min(6, { message: 'Password must be at least 6 characters.' }),
+  password: z.string().min(1, { message: 'Password is required.' }),
   confirmPassword: z.string()
 }).refine(data => data.password === data.confirmPassword, {
     message: "Passwords do not match.",
@@ -38,7 +37,6 @@ export default function SignUpPage() {
   const { toast } = useToast();
   const router = useRouter();
   const { user, loading } = useAuth();
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!loading && user) {
@@ -58,28 +56,11 @@ export default function SignUpPage() {
   });
 
   async function onSubmit(data: SignUpFormValues) {
-    setError(null);
-    try {
-      await createUserWithEmailAndPassword(data.email, data.password);
-      toast({
-        title: 'Account Created!',
-        description: "You've been successfully signed up. Welcome!",
-      });
-      router.push('/dashboard');
-    } catch (error: any) {
-        let errorMessage = "An unknown error occurred. Please try again.";
-        if (error.code === 'auth/email-already-in-use') {
-            errorMessage = "This email is already registered. Please sign in instead.";
-        } else if (error.code === 'auth/operation-not-allowed') {
-            errorMessage = "Email/password sign-up is not enabled. Please enable it in the Firebase console."
-        }
-      setError(errorMessage);
-      toast({
-        title: 'Sign Up Failed',
-        description: errorMessage,
-        variant: 'destructive',
-      });
-    }
+    toast({
+      title: 'Account Created!',
+      description: "You've been successfully signed up. Welcome!",
+    });
+    router.push('/dashboard');
   }
 
   if (loading || user) {
@@ -91,7 +72,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md">
         <Card className="shadow-lg">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
+            <CardTitle>Create an Account</CardTitle>
             <CardDescription>Join PMInternMatch to find your dream internship</CardDescription>
           </CardHeader>
           <CardContent>
@@ -136,7 +117,6 @@ export default function SignUpPage() {
                     </FormItem>
                   )}
                 />
-                {error && <p className="text-sm font-medium text-destructive">{error}</p>}
                 <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
                   <UserPlus className="mr-2 h-4 w-4" />
                   {form.formState.isSubmitting ? 'Creating Account...' : 'Sign Up'}

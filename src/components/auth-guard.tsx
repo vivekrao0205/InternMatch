@@ -1,21 +1,32 @@
 'use client';
 
 import { useEffect, ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useAuth } from '@/context/auth-provider';
 import { Skeleton } from './ui/skeleton';
 
 export default function AuthGuard({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const pathname = usePathname();
+
+  const isAuthPage = pathname === '/signin' || pathname === '/signup';
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push('/signin');
+    if (!loading) {
+      // If user is not logged in and not on an auth page, redirect to signin
+      if (!user && !isAuthPage) {
+        router.push('/signin');
+      } 
+      // If user is logged in and on an auth page, redirect to dashboard
+      else if (user && isAuthPage) {
+        router.push('/dashboard');
+      }
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, isAuthPage]);
 
-  if (loading || !user) {
+  // While loading, or if a redirect is imminent, show a skeleton screen.
+  if (loading || (!user && !isAuthPage) || (user && isAuthPage)) {
     return (
         <div className="container mx-auto py-8 px-4">
             <div className="space-y-4">
@@ -34,5 +45,6 @@ export default function AuthGuard({ children }: { children: ReactNode }) {
     );
   }
 
+  // If we are on the correct page for the auth state, render the children.
   return <>{children}</>;
 }

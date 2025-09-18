@@ -99,98 +99,98 @@ function DashboardPageContent() {
   } as const;
 
   return (
-    <div className="bg-background">
-      <div className="container mx-auto py-8 px-4">
-        <div className="mb-8">
-            <h1 className="text-4xl font-headline font-bold">Dashboard</h1>
-            <p className="text-muted-foreground mt-2">Track all your internship applications in one place.</p>
-        </div>
+    <AuthGuard>
+        <div className="bg-background">
+          <div className="container mx-auto py-8 px-4">
+            <div className="mb-8">
+                <h1 className="text-4xl font-headline font-bold">Dashboard</h1>
+                <p className="text-muted-foreground mt-2">Track all your internship applications in one place.</p>
+            </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle>Total Applications</CardTitle>
-              <Briefcase className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{totalApplications}</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle>Interviews</CardTitle>
-              <FileCheck className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{interviewCount}</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle>Offers</CardTitle>
-              <Award className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{offeredCount}</div>
-            </CardContent>
-          </Card>
-           {totalApplications > 0 && (
-            <Card className="md:col-span-2 lg:col-span-1">
-                <CardHeader className="items-center pb-0">
-                    <CardTitle>Application Status</CardTitle>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle>Total Applications</CardTitle>
+                  <Briefcase className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
-                <CardContent className="flex-1 pb-0">
-                    <ChartContainer
-                    config={chartConfig}
-                    className="mx-auto aspect-square h-[200px]"
-                    >
-                    <PieChart>
-                        <ChartTooltip
-                        cursor={false}
-                        content={<ChartTooltipContent hideLabel />}
-                        />
-                        <ChartPie
-                        data={chartData}
-                        dataKey="count"
-                        nameKey="status"
-                        innerRadius={50}
-                        />
-                         <ChartLegend
-                            content={<ChartLegendContent nameKey="status" />}
-                            className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
-                        />
-                    </PieChart>
-                    </ChartContainer>
+                <CardContent>
+                  <div className="text-2xl font-bold">{totalApplications}</div>
                 </CardContent>
-            </Card>
-           )}
-        </div>
-
-        <h2 className="text-2xl font-headline font-bold mb-4">My Applications</h2>
-        <div className="space-y-6">
-            {applications.length > 0 ? (
-                applications.map(app => <ApplicationCard key={app.id} application={app} />)
-            ) : (
-                <Card className="text-center py-12">
-                    <CardContent>
-                        <h3 className="text-xl font-semibold">No Applications Yet</h3>
-                        <p className="text-muted-foreground mt-2">Start exploring and apply for internships to see them here.</p>
-                        <Button asChild className="mt-4">
-                            <Link href="/internships">Browse Internships</Link>
-                        </Button>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle>Interviews</CardTitle>
+                  <FileCheck className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{interviewCount}</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle>Offers</CardTitle>
+                  <Award className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{offeredCount}</div>
+                </CardContent>
+              </Card>
+               {totalApplications > 0 && (
+                <Card className="md:col-span-2 lg:col-span-1">
+                    <CardHeader className="items-center pb-0">
+                        <CardTitle>Application Status</CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-0">
+                        <ChartContainer
+                        config={chartConfig}
+                        className="mx-auto aspect-square h-[200px]"
+                        >
+                        <PieChart>
+                            <ChartTooltip
+                            cursor={false}
+                            content={<ChartTooltipContent hideLabel />}
+                            />
+                            <ChartPie
+                            data={chartData}
+                            dataKey="count"
+                            nameKey="status"
+                            innerRadius={50}
+                            />
+                             <ChartLegend
+                                content={<ChartLegendContent nameKey="status" />}
+                                className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+                            />
+                        </PieChart>
+                        </ChartContainer>
                     </CardContent>
                 </Card>
-            )}
+               )}
+            </div>
+
+            <h2 className="text-2xl font-headline font-bold mb-4">My Applications</h2>
+            <div className="space-y-6">
+                {applications.length > 0 ? (
+                    applications.map(app => <ApplicationCard key={app.id} application={app} />)
+                ) : (
+                    <Card className="text-center py-12">
+                        <CardContent>
+                            <h3 className="text-xl font-semibold">No Applications Yet</h3>
+                            <p className="text-muted-foreground mt-2">Start exploring and apply for internships to see them here.</p>
+                            <Button asChild className="mt-4">
+                                <Link href="/internships">Browse Internships</Link>
+                            </Button>
+                        </CardContent>
+                    </Card>
+                )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+    </AuthGuard>
   );
 }
 
 export default function DashboardPage() {
     return (
-        <AuthGuard>
-            <DashboardPageContent />
-        </AuthGuard>
+        <DashboardPageContent />
     )
 }
