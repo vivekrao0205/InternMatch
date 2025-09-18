@@ -70,6 +70,8 @@ export default function SignUpPage() {
         let errorMessage = "An unknown error occurred. Please try again.";
         if (error.code === 'auth/email-already-in-use') {
             errorMessage = "This email is already registered. Please sign in instead.";
+        } else if (error.code === 'auth/operation-not-allowed') {
+            errorMessage = "Email/password sign-up is not enabled. Please enable it in the Firebase console."
         }
       setError(errorMessage);
       toast({

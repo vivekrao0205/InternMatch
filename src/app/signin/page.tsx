@@ -65,6 +65,8 @@ export default function SignInPage() {
         let errorMessage = "An unknown error occurred. Please try again.";
         if (error.code === "auth/invalid-credential") {
             errorMessage = "Invalid email or password. Please check your credentials and try again."
+        } else if (error.code === 'auth/operation-not-allowed') {
+            errorMessage = "Email/password sign-in is not enabled. Please enable it in the Firebase console."
         }
       setError(errorMessage);
       toast({
