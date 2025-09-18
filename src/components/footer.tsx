@@ -13,7 +13,6 @@ export default function Footer() {
           </div>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground mb-4 md:mb-0">
             <Link href="/internships" className="hover:text-primary transition-colors">Browse</Link>
-            <Link href="/post-internship" className="hover:text-primary transition-colors">For Companies</Link>
             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
             <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </nav>
