@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -132,10 +133,12 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button onClick={() => handleSignIn(toast)} variant="ghost">
-              <LogIn className="mr-2 h-4 w-4" />
-              Sign In
-            </Button>
+            pathname !== '/signin' && (
+                <Button onClick={() => handleSignIn(toast)} variant="ghost">
+                  <LogIn className="mr-2 h-4 w-4" />
+                  Sign In
+                </Button>
+            )
           )}
 
           {user && (
