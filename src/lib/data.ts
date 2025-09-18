@@ -1,3 +1,4 @@
+
 import type { Internship, Application, StudentProfile, ImagePlaceholder } from '@/types';
 import placeholderData from './placeholder-images.json';
 
@@ -138,6 +139,15 @@ export const internships: Internship[] = [
     location: 'Pune, MH',
     description: 'A role focused on applying AI/ML to the telecom industry. You will work on projects related to network optimization and security.',
     requiredSkills: ['Cloud computing', 'AI/ML', 'Python', 'Security'],
+  },
+  {
+    id: '16',
+    title: 'Cloud Engineering Intern',
+    company: 'Mindtree',
+    logoId: 'logo-mindtree',
+    location: 'Hyderabad, TS',
+    description: 'Join our team in Hyderabad to work on cutting-edge cloud solutions. This internship provides hands-on experience with major cloud platforms and DevOps practices.',
+    requiredSkills: ['Cloud', 'Java', 'AI/ML', 'DevOps'],
   }
 ];
 
@@ -173,3 +183,5 @@ export const studentProfile: StudentProfile = {
     qualifications: 'Currently pursuing a B.Tech in Computer Science from a top Indian university. Completed several projects on product design and market analysis. Strong analytical and problem-solving skills.',
     preferences: 'Interested in B2C products, preferably in the fintech or e-commerce sectors. Open to remote or hybrid roles in major tech hubs like Bangalore or Mumbai.'
 }
+
+    

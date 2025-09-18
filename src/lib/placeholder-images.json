@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -95,6 +96,14 @@
       "description": "Logo for Tech Mahindra",
       "imageUrl": "https://images.unsplash.com/photo-1611162616801-44d5a1b39e3f?q=80&w=400&auto=format&fit=crop",
       "imageHint": "tech solutions logo"
+    },
+    {
+      "id": "logo-mindtree",
+      "description": "Logo for Mindtree",
+      "imageUrl": "https://images.unsplash.com/photo-1611162618071-b37a2ec854f3?q=80&w=400&auto=format&fit=crop",
+      "imageHint": "IT consulting logo"
     }
   ]
 }
+
+    
