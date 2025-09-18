@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Internship } from '@/types';
-import { placeholderImages } from '@/lib/data';
 import { MapPin, Briefcase } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -13,7 +11,6 @@ type InternshipCardProps = {
 
 export default function InternshipCard({ internship }: InternshipCardProps) {
   const { toast } = useToast();
-  const logo = placeholderImages.find(p => p.id === internship.logoId);
 
   const handleApply = () => {
     toast({
@@ -24,20 +21,8 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-      <CardHeader className="flex flex-row items-start gap-4 p-4 bg-muted/30">
-        {logo && (
-          <div className="w-16 h-16 bg-white rounded-md flex items-center justify-center p-1 border">
-            <Image
-              src={logo.imageUrl}
-              alt={`${internship.company} logo`}
-              width={64}
-              height={64}
-              className="object-contain rounded-sm"
-              data-ai-hint={logo.imageHint}
-            />
-          </div>
-        )}
-        <div className="flex-grow">
+      <CardHeader className="p-4 bg-muted/30">
+        <div>
           <CardTitle className="text-xl font-headline leading-tight">{internship.title}</CardTitle>
           <CardDescription className="text-base">{internship.company}</CardDescription>
         </div>

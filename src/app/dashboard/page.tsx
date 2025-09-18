@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { placeholderImages } from '@/lib/data';
 import type { Application } from '@/types';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Briefcase, FileCheck, Award } from 'lucide-react';
@@ -29,13 +28,9 @@ function getStatusVariant(status: Application['status']): 'default' | 'secondary
 }
 
 function ApplicationCard({ application }: { application: Application }) {
-    const logo = placeholderImages.find(p => p.id === application.internship.logoId);
     return (
       <Card className="hover:shadow-md transition-shadow duration-300">
         <CardContent className="p-6 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-16 h-16 flex-shrink-0">
-                {logo && <Image src={logo.imageUrl} alt={`${application.internship.company} logo`} width={64} height={64} className="rounded-md object-contain" data-ai-hint={logo.imageHint} />}
-            </div>
             <div className="flex-grow">
               <div className="flex justify-between items-start">
                   <div>
