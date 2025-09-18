@@ -3,7 +3,6 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type AuthContextType = {
