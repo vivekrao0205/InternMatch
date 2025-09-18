@@ -8,8 +8,9 @@ import RecommendationCard from '@/components/recommendation-card';
 import { Sparkles, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import AuthGuard from '@/components/auth-guard';
 
-export default function RecommendationsPage() {
+function RecommendationsPageContent() {
   const [recommendations, setRecommendations] = useState<AIInternshipMatchingOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -81,4 +82,12 @@ export default function RecommendationsPage() {
       </div>
     </div>
   );
+}
+
+export default function RecommendationsPage() {
+    return (
+        <AuthGuard>
+            <RecommendationsPageContent />
+        </AuthGuard>
+    )
 }

@@ -1,9 +1,8 @@
-
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield, User } from 'lucide-react';
+import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield, User, LogOut, LogIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Logo } from './icons';
 import { cn } from '@/lib/utils';
@@ -14,24 +13,36 @@ import {
 } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
+import { useAuth } from '@/context/auth-provider';
+import { signOut } from '@/lib/firebase';
+import { useRouter } from 'next/navigation';
 
 
 const navItems = [
-    { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
+    { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" />, auth: true },
     { href: '/internships', label: 'Internships', icon: <Briefcase className="h-4 w-4" /> },
-    { href: '/recommendations', label: 'AI Matches', icon: <Sparkles className="h-4 w-4" /> },
-    { href: '/profile', label: 'Student Profile', icon: <User className="h-4 w-4" /> },
+    { href: '/recommendations', label: 'AI Matches', icon: <Sparkles className="h-4 w-4" />, auth: true },
+    { href: '/profile', label: 'Student Profile', icon: <User className="h-4 w-4" />, auth: true },
     { href: '/post-internship', label: 'Post Job', icon: <PlusCircle className="h-4 w-4" /> },
     { href: '/admin', label: 'Admin', icon: <Shield className="h-4 w-4" /> },
 ];
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, loading } = useAuth();
 
-  const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => (
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/');
+  }
+
+  const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
+    const visibleItems = navItems.filter(item => !item.auth || (item.auth && user));
+    return (
     <nav className={cn("items-center space-x-6 text-sm font-medium", isMobile ? 'flex flex-col space-x-0 space-y-4 pt-6' : 'hidden md:flex')}>
-      {navItems.map((item) => (
+      {visibleItems.map((item) => (
         <Link
           key={item.href}
           href={item.href}
@@ -45,8 +56,14 @@ export default function Header() {
           <span>{item.label}</span>
         </Link>
       ))}
+      {!loading && user && (
+        <Button variant={isMobile ? "default" : "ghost"} onClick={handleSignOut} className="flex items-center gap-2">
+           <LogOut className="h-4 w-4" />
+           Sign Out
+        </Button>
+      )}
     </nav>
-  );
+  )};
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -58,7 +75,20 @@ export default function Header() {
         
         <NavLinks />
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-2">
+            {!loading && !user && (
+                <div className="hidden md:flex items-center gap-2">
+                     <Button variant="ghost" asChild>
+                        <Link href="/signin">
+                            <LogIn className="h-4 w-4 mr-2" />
+                            Sign In
+                        </Link>
+                    </Button>
+                    <Button asChild>
+                        <Link href="/signup">Sign Up</Link>
+                    </Button>
+                </div>
+            )}
             <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
@@ -72,6 +102,19 @@ export default function Header() {
                   <span className="font-bold font-headline">PMInternMatch</span>
                 </Link>
                 <NavLinks isMobile />
+                 {!loading && !user && (
+                    <div className="flex flex-col space-y-4 pt-6">
+                         <Button variant="outline" asChild>
+                            <Link href="/signin" onClick={() => setMobileMenuOpen(false)}>
+                                <LogIn className="h-4 w-4 mr-2" />
+                                Sign In
+                            </Link>
+                        </Button>
+                        <Button asChild>
+                            <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>Sign Up</Link>
+                        </Button>
+                    </div>
+                )}
               </SheetContent>
             </Sheet>
         </div>

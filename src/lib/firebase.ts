@@ -1,4 +1,13 @@
 import { initializeApp, getApps, getApp, type FirebaseOptions } from "firebase/app";
+import { 
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  type User
+} from "firebase/auth";
+
 
 const firebaseConfig: FirebaseOptions = {
   "projectId": "studio-144960523-e2f7c",
@@ -12,5 +21,17 @@ const firebaseConfig: FirebaseOptions = {
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const auth = getAuth(app);
 
-export { app };
+export { 
+  app, 
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  User
+};
+
+export const signOut = () => {
+  return firebaseSignOut(auth);
+}

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -20,6 +19,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast';
 import { studentProfile as mockProfile } from '@/lib/data';
 import { User, Save } from 'lucide-react';
+import AuthGuard from '@/components/auth-guard';
+
 
 const profileSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -31,7 +32,7 @@ const profileSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const { toast } = useToast();
 
   const form = useForm<ProfileFormValues>({
@@ -91,7 +92,7 @@ export default function ProfilePage() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="e.g. priya.sharma@email.com" {...field} />
+                          <Input type="email" placeholder="e.g. priya.sharma@email.com" {...field} readOnly />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -159,4 +160,12 @@ export default function ProfilePage() {
       </div>
     </div>
   );
+}
+
+export default function ProfilePage() {
+    return (
+        <AuthGuard>
+            <ProfilePageContent />
+        </AuthGuard>
+    )
 }

@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { ArrowRight, Briefcase, FileCheck, Award } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartPie, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
 import { PieChart } from 'recharts';
+import AuthGuard from '@/components/auth-guard';
 
 function getStatusVariant(status: Application['status']): 'default' | 'secondary' | 'destructive' | 'outline' {
     switch (status) {
@@ -55,7 +56,7 @@ function ApplicationCard({ application }: { application: Application }) {
     )
 }
 
-export default function DashboardPage() {
+function DashboardPageContent() {
   const totalApplications = applications.length;
   const interviewCount = applications.filter(app => app.status === 'Interview').length;
   const offeredCount = applications.filter(app => app.status === 'Offered').length;
@@ -184,4 +185,12 @@ export default function DashboardPage() {
       </div>
     </div>
   );
+}
+
+export default function DashboardPage() {
+    return (
+        <AuthGuard>
+            <DashboardPageContent />
+        </AuthGuard>
+    )
 }
