@@ -1,16 +1,21 @@
 'use client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { applications } from '@/lib/data';
+import { applications, studentProfile } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import type { Application } from '@/types';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Briefcase, FileCheck, Award } from 'lucide-react';
+import { ArrowRight, Briefcase, FileCheck, Award, Sparkles } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartPie, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
 import { PieChart } from 'recharts';
 import AuthGuard from '@/components/auth-guard';
+import { useState, useEffect } from 'react';
+import { AIInternshipMatchingOutput } from '@/ai/flows/ai-internship-matching';
+import { getInternshipRecommendations } from '@/lib/actions';
+import RecommendationCard from '@/components/recommendation-card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function getStatusVariant(status: Application['status']): 'default' | 'secondary' | 'destructive' | 'outline' {
     switch (status) {
@@ -52,6 +57,22 @@ function ApplicationCard({ application }: { application: Application }) {
 }
 
 function DashboardPageContent() {
+  const [recommendations, setRecommendations] = useState<AIInternshipMatchingOutput | null>(null);
+  const [isLoadingRecs, setIsLoadingRecs] = useState(true);
+
+  useEffect(() => {
+    async function fetchRecommendations() {
+      setIsLoadingRecs(true);
+      const skills = studentProfile.skills.join(', ');
+      const result = await getInternshipRecommendations(skills);
+      if (result.success) {
+        setRecommendations(result.data);
+      }
+      setIsLoadingRecs(false);
+    }
+    fetchRecommendations();
+  }, []);
+
   const totalApplications = applications.length;
   const interviewCount = applications.filter(app => app.status === 'Interview').length;
   const offeredCount = applications.filter(app => app.status === 'Offered').length;
@@ -162,8 +183,9 @@ function DashboardPageContent() {
                )}
             </div>
 
-            <h2 className="text-2xl font-headline font-bold mb-4">My Applications</h2>
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+              <div className="xl:col-span-2 space-y-6">
+                 <h2 className="text-2xl font-headline font-bold">My Applications</h2>
                 {applications.length > 0 ? (
                     applications.map(app => <ApplicationCard key={app.id} application={app} />)
                 ) : (
@@ -177,6 +199,36 @@ function DashboardPageContent() {
                         </CardContent>
                     </Card>
                 )}
+              </div>
+              <div className="space-y-6">
+                <h2 className="text-2xl font-headline font-bold">Top Recommendations</h2>
+                 {isLoadingRecs && (
+                    <div className="space-y-4">
+                        <Skeleton className="h-32 w-full rounded-lg" />
+                        <Skeleton className="h-32 w-full rounded-lg" />
+                        <Skeleton className="h-32 w-full rounded-lg" />
+                    </div>
+                )}
+                {recommendations && (
+                    <div className="space-y-4">
+                        {recommendations.topInternships.map((rec, index) => (
+                            <RecommendationCard key={index} recommendation={rec} />
+                        ))}
+                    </div>
+                )}
+                 {!isLoadingRecs && (!recommendations || recommendations.topInternships.length === 0) && (
+                    <Card className="text-center py-12">
+                        <CardContent>
+                             <Sparkles className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
+                            <h3 className="text-xl font-semibold">No Recommendations</h3>
+                            <p className="text-muted-foreground mt-2">Update your profile with more skills to get better matches.</p>
+                             <Button asChild className="mt-4" variant="outline">
+                                <Link href="/profile">Update Profile</Link>
+                            </Button>
+                        </CardContent>
+                    </Card>
+                )}
+              </div>
             </div>
           </div>
         </div>
