@@ -74,8 +74,8 @@ function DashboardPageContent() {
   useEffect(() => {
     async function fetchRecommendations() {
       setIsLoadingRecs(true);
-      const skills = studentProfile.skills.join(', ');
-      const result = await getInternshipRecommendations(skills);
+      const {id, email, ...profileData} = studentProfile;
+      const result = await getInternshipRecommendations(profileData);
       if (result.success) {
         setRecommendations(result.data);
       }
