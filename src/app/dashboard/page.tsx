@@ -1,3 +1,4 @@
+'use client';
 import AuthGuard from '@/components/auth-guard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { applications } from '@/lib/data';
@@ -8,7 +9,9 @@ import Image from 'next/image';
 import { placeholderImages } from '@/lib/data';
 import type { Application } from '@/types';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Briefcase, FileCheck, Award } from 'lucide-react';
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartPie, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
+import { PieChart } from 'recharts';
 
 function getStatusVariant(status: Application['status']): 'default' | 'secondary' | 'destructive' | 'outline' {
     switch (status) {
@@ -54,6 +57,47 @@ function ApplicationCard({ application }: { application: Application }) {
 }
 
 function DashboardPageContent() {
+  const totalApplications = applications.length;
+  const interviewCount = applications.filter(app => app.status === 'Interview').length;
+  const offeredCount = applications.filter(app => app.status === 'Offered').length;
+
+  const statusCounts = applications.reduce((acc, app) => {
+    acc[app.status] = (acc[app.status] || 0) + 1;
+    return acc;
+  }, {} as Record<Application['status'], number>);
+
+  const chartData = Object.entries(statusCounts).map(([status, count]) => ({
+    status,
+    count,
+    fill: `var(--color-${status.toLowerCase().replace(' ', '-')})`
+  }));
+
+  const chartConfig = {
+    count: {
+      label: 'Applications',
+    },
+    applied: {
+      label: 'Applied',
+      color: 'hsl(var(--chart-1))',
+    },
+    'under-review': {
+      label: 'Under Review',
+      color: 'hsl(var(--chart-2))',
+    },
+    interview: {
+      label: 'Interview',
+      color: 'hsl(var(--chart-3))',
+    },
+    offered: {
+      label: 'Offered',
+      color: 'hsl(var(--chart-4))',
+    },
+    rejected: {
+      label: 'Rejected',
+      color: 'hsl(var(--chart-5))',
+    },
+  } as const;
+
   return (
     <div className="bg-background">
       <div className="container mx-auto py-8 px-4">
@@ -62,6 +106,67 @@ function DashboardPageContent() {
             <p className="text-muted-foreground mt-2">Track all your internship applications in one place.</p>
         </div>
 
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Total Applications</CardTitle>
+              <Briefcase className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{totalApplications}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Interviews</CardTitle>
+              <FileCheck className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{interviewCount}</div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Offers</CardTitle>
+              <Award className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{offeredCount}</div>
+            </CardContent>
+          </Card>
+           {totalApplications > 0 && (
+            <Card className="md:col-span-2 lg:col-span-1">
+                <CardHeader className="items-center pb-0">
+                    <CardTitle>Application Status</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1 pb-0">
+                    <ChartContainer
+                    config={chartConfig}
+                    className="mx-auto aspect-square h-[200px]"
+                    >
+                    <PieChart>
+                        <ChartTooltip
+                        cursor={false}
+                        content={<ChartTooltipContent hideLabel />}
+                        />
+                        <ChartPie
+                        data={chartData}
+                        dataKey="count"
+                        nameKey="status"
+                        innerRadius={50}
+                        />
+                         <ChartLegend
+                            content={<ChartLegendContent nameKey="status" />}
+                            className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+                        />
+                    </PieChart>
+                    </ChartContainer>
+                </CardContent>
+            </Card>
+           )}
+        </div>
+
+        <h2 className="text-2xl font-headline font-bold mb-4">My Applications</h2>
         <div className="space-y-6">
             {applications.length > 0 ? (
                 applications.map(app => <ApplicationCard key={app.id} application={app} />)
