@@ -55,8 +55,8 @@ export default function SignInPage() {
           <div className="mx-auto mb-4">
             <Logo className="h-12 w-12" />
           </div>
-          <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
-          <CardDescription>Sign in to find your perfect product internship.</CardDescription>
+          <CardTitle><p>Welcome Back</p></CardTitle>
+          <CardDescription><p>Sign in to find your perfect product internship.</p></CardDescription>
         </CardHeader>
         <CardContent>
           <Button className="w-full bg-white text-black hover:bg-gray-100 border" onClick={handleSignIn}>
