@@ -1,3 +1,4 @@
+
 // This is a server-side file.
 'use server';
 
@@ -37,6 +38,7 @@ const AIInternshipMatchingOutputSchema = z.object({
       company: z.string().describe('The company offering the internship.'),
       matchScore: z.number().describe('A score indicating how well the internship matches the student profile.'),
       reason: z.string().describe('Reason why this internship is a good match for the student.'),
+      salary: z.string().describe('The estimated salary for the internship.'),
     })
   ).max(3).describe('The top 3 internship recommendations based on the student profile.'),
 });
@@ -72,19 +74,22 @@ Output format:
       "title": "Internship Title 1",
       "company": "Company Name 1",
       "matchScore": 95,
-      "reason": "This internship is a great match because..."
+      "reason": "This internship is a great match because...",
+      "salary": "₹50,000 - ₹70,000 /month"
     },
     {
       "title": "Internship Title 2",
       "company": "Company Name 2",
       "matchScore": 90,
-      "reason": "This internship is a good match because..."
+      "reason": "This internship is a good match because...",
+       "salary": "₹45,000 - ₹65,000 /month"
     },
     {
       "title": "Internship Title 3",
       "company": "Company Name 3",
       "matchScore": 85,
-      "reason": "This internship is a potential match because..."
+      "reason": "This internship is a potential match because...",
+      "salary": "₹55,000 - ₹75,000 /month"
     }
   ]
 }`,

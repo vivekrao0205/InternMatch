@@ -5,6 +5,7 @@ export type StudentProfile = {
   skills: string[];
   qualifications: string;
   preferences: string;
+  expectedSalary: string;
 };
 
 export type Internship = {
@@ -15,6 +16,7 @@ export type Internship = {
   location: string;
   description: string;
   requiredSkills: string[];
+  salary: string;
 };
 
 export type Application = {

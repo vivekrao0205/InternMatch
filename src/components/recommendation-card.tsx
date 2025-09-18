@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Button } from './ui/button';
 import { AIInternshipMatchingOutput } from '@/ai/flows/ai-internship-matching';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, IndianRupee } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 type Recommendation = AIInternshipMatchingOutput['topInternships'][0];
@@ -71,6 +71,9 @@ export default function RecommendationCard({ recommendation }: { recommendation:
         <div className="flex-grow">
           <CardTitle className="font-headline text-xl">{recommendation.title}</CardTitle>
           <CardDescription>{recommendation.company}</CardDescription>
+           <div className="flex items-center gap-2 text-sm text-muted-foreground mt-2">
+                <IndianRupee className="h-4 w-4 flex-shrink-0" /> <span>{recommendation.salary}</span>
+            </div>
         </div>
         <Button asChild variant="ghost" size="icon">
           <Link href="/internships">

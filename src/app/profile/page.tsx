@@ -30,6 +30,7 @@ const profileSchema = z.object({
   skills: z.string().min(3, { message: "Please list at least one skill." }),
   qualifications: z.string().min(20, { message: "Qualifications summary should be at least 20 characters." }),
   preferences: z.string().min(10, { message: "Preferences should be at least 10 characters." }),
+  expectedSalary: z.string().min(3, { message: "Please enter your expected salary." }),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -45,6 +46,7 @@ function ProfilePageContent() {
       skills: '',
       qualifications: '',
       preferences: '',
+      expectedSalary: '',
     },
     mode: 'onChange',
   });
@@ -56,6 +58,7 @@ function ProfilePageContent() {
       skills: studentProfile.skills.join(', '),
       qualifications: studentProfile.qualifications,
       preferences: studentProfile.preferences,
+      expectedSalary: studentProfile.expectedSalary,
     });
   }, [form]);
 
@@ -66,6 +69,7 @@ function ProfilePageContent() {
     studentProfile.skills = data.skills.split(',').map(s => s.trim());
     studentProfile.qualifications = data.qualifications;
     studentProfile.preferences = data.preferences;
+    studentProfile.expectedSalary = data.expectedSalary;
     
     console.log("Updated profile data:", studentProfile);
 
@@ -166,6 +170,22 @@ function ProfilePageContent() {
                               {...field}
                             />
                           </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <FormField
+                      control={form.control}
+                      name="expectedSalary"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Expected Salary</FormLabel>
+                          <FormControl>
+                            <Input placeholder="e.g. ₹50,000 /month" {...field} />
+                          </FormControl>
+                           <FormDescription>
+                            Enter your desired monthly salary.
+                          </FormDescription>
                           <FormMessage />
                         </FormItem>
                       )}

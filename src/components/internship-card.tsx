@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Internship } from '@/types';
-import { MapPin, Briefcase } from 'lucide-react';
+import { MapPin, Briefcase, IndianRupee } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 type InternshipCardProps = {
@@ -28,8 +28,13 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <MapPin className="h-4 w-4" /> <span>{internship.location}</span>
+        <div className="flex flex-col gap-2 text-sm text-muted-foreground mb-4">
+            <div className="flex items-center gap-2">
+                <MapPin className="h-4 w-4 flex-shrink-0" /> <span>{internship.location}</span>
+            </div>
+            <div className="flex items-center gap-2">
+                <IndianRupee className="h-4 w-4 flex-shrink-0" /> <span>{internship.salary}</span>
+            </div>
         </div>
         <p className="text-sm text-foreground/80 mb-4 line-clamp-3">{internship.description}</p>
         <div className="space-y-2">

@@ -20,6 +20,7 @@ function formatInternshipList(list: Internship[]): string {
 - Location: ${internship.location}
 - Description: ${internship.description}
 - Required Skills: ${internship.requiredSkills.join(', ')}
+- Salary: ${internship.salary}
   `.trim()).join('\n\n');
 }
 
@@ -60,7 +61,8 @@ export async function getInternshipRecommendations(skills: string): Promise<{ su
         title: internship.title,
         company: internship.company,
         matchScore: internship.matchScore,
-        reason: internship.reason
+        reason: internship.reason,
+        salary: internship.salary,
     }));
 
     const result: AIInternshipMatchingOutput = {
