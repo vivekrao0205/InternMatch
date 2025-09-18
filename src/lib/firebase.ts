@@ -2,15 +2,13 @@ import { initializeApp, getApps, getApp, type FirebaseOptions } from "firebase/a
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig: FirebaseOptions = {
-  // --- IMPORTANT ---
-  // Replace this with your own Firebase configuration
-  // For example, from your Firebase project settings
-  apiKey: "AIza-YOUR-OWN-API-KEY",
-  authDomain: "your-project-id.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project-id.appspot.com",
-  messagingSenderId: "your-sender-id",
-  appId: "1:your-sender-id:web:your-app-id",
+  "projectId": "studio-144960523-e2f7c",
+  "appId": "1:39316924196:web:cac0e7b8576c85115575b1",
+  "storageBucket": "studio-144960523-e2f7c.firebasestorage.app",
+  "apiKey": "AIzaSyA9DeQhCtALGZQYMrosloWcUTgm3gKun7c",
+  "authDomain": "studio-144960523-e2f7c.firebaseapp.com",
+  "measurementId": "",
+  "messagingSenderId": "39316924196"
 };
 
 // Initialize Firebase
