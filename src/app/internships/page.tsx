@@ -48,7 +48,7 @@ export default function InternshipsPage() {
       <div className="text-center mb-8">
         <h1 className="text-4xl font-headline font-bold">Find Your Internship</h1>
         <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Search and filter through our curated list of product management internships from top companies.
+          Search and filter through our curated list of internships from top companies.
         </p>
       </div>
 

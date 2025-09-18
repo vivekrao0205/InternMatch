@@ -8,7 +8,7 @@ import { AuthProvider } from '@/context/auth-provider';
 
 export const metadata: Metadata = {
   title: 'PMInternMatch',
-  description: 'AI-powered internship matching for aspiring product managers.',
+  description: 'AI-powered internship matching to launch your career.',
 };
 
 export default function RootLayout({
