@@ -38,7 +38,7 @@ export default function PostInternshipPage() {
     defaultValues: {
       title: '',
       company: '',
-      location: '',
+      location: 'Bangalore, KA',
       requiredSkills: '',
       description: '',
     },
@@ -102,7 +102,7 @@ export default function PostInternshipPage() {
                       <FormItem>
                         <FormLabel>Company Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g. TechCorp" {...field} />
+                          <Input placeholder="e.g. BharatTech" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -116,7 +116,7 @@ export default function PostInternshipPage() {
                     <FormItem>
                       <FormLabel>Location</FormLabel>
                       <FormControl>
-                        <Input placeholder="e.g. San Francisco, CA or Remote" {...field} />
+                        <Input placeholder="e.g. Bangalore, KA or Remote" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

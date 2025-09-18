@@ -78,7 +78,7 @@ export default function ProfilePage() {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="e.g. Jane Doe" {...field} />
+                          <Input placeholder="e.g. Priya Sharma" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -91,7 +91,7 @@ export default function ProfilePage() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="e.g. jane.doe@email.com" {...field} />
+                          <Input type="email" placeholder="e.g. priya.sharma@email.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
