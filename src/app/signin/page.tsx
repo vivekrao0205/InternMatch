@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { GoogleAuthProvider, signInWithPopup, getRedirectResult } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
@@ -25,21 +25,25 @@ export default function SignInPage() {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!loading && user) {
-      router.push('/dashboard');
-    }
-  }, [user, loading, router]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/dashboard');
+      }
+    });
 
+    return () => unsubscribe();
+  }, [router]);
+  
   const handleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      // After popup is successful, the onAuthStateChanged listener will trigger the useEffect above
+      // The onAuthStateChanged listener will handle the redirect
     } catch (error: any) {
       console.error('Error signing in with Google', error);
       toast({
         title: 'Sign-in Failed',
-        description: error.message,
+        description: 'Could not sign in with Google. Please try again.',
         variant: 'destructive'
       })
     }
