@@ -21,8 +21,8 @@ export default function InternshipsPage() {
     return allInternships.filter(internship => {
       const matchesSearch = internship.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                             internship.company.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesSkill = !selectedSkill || internship.requiredSkills.includes(selectedSkill);
-      const matchesLocation = !selectedLocation || internship.location === selectedLocation;
+      const matchesSkill = !selectedSkill || selectedSkill === 'all-skills' || internship.requiredSkills.includes(selectedSkill);
+      const matchesLocation = !selectedLocation || selectedLocation === 'all-locations' || internship.location === selectedLocation;
       return matchesSearch && matchesSkill && matchesLocation;
     });
   }, [searchTerm, selectedSkill, selectedLocation]);
@@ -32,6 +32,14 @@ export default function InternshipsPage() {
     setSelectedSkill('');
     setSelectedLocation('');
   }
+
+  const handleSkillChange = (value: string) => {
+    setSelectedSkill(value === 'all-skills' ? '' : value);
+  };
+  
+  const handleLocationChange = (value: string) => {
+    setSelectedLocation(value === 'all-locations' ? '' : value);
+  };
 
   const hasActiveFilters = searchTerm || selectedSkill || selectedLocation;
 
@@ -55,23 +63,23 @@ export default function InternshipsPage() {
               className="pl-10"
             />
           </div>
-          <Select value={selectedSkill} onValueChange={setSelectedSkill}>
+          <Select value={selectedSkill} onValueChange={handleSkillChange}>
             <SelectTrigger>
               <SelectValue placeholder="Filter by skill" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Skills</SelectItem>
+              <SelectItem value="all-skills">All Skills</SelectItem>
               {uniqueSkills.map(skill => (
                 <SelectItem key={skill} value={skill}>{skill}</SelectItem>
               ))}
             </SelectContent>
           </Select>
-          <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+          <Select value={selectedLocation} onValueChange={handleLocationChange}>
             <SelectTrigger>
               <SelectValue placeholder="Filter by location" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Locations</SelectItem>
+              <SelectItem value="all-locations">All Locations</SelectItem>
               {uniqueLocations.map(location => (
                 <SelectItem key={location} value={location}>{location}</SelectItem>
               ))}
