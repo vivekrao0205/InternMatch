@@ -181,7 +181,7 @@ function ProfilePageContent() {
                         <FormItem>
                           <FormLabel>Expected Salary</FormLabel>
                           <FormControl>
-                            <Input placeholder="e.g. ₹50,000 /month" {...field} />
+                            <Input placeholder="e.g. ₹30,000 /month" {...field} />
                           </FormControl>
                            <FormDescription>
                             Enter your desired monthly salary.
@@ -209,3 +209,5 @@ export default function ProfilePage() {
         <ProfilePageContent />
     )
 }
+
+    

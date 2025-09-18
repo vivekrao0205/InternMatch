@@ -13,7 +13,7 @@ export const internships: Internship[] = [
     location: 'Mumbai, MH',
     description: 'Work on cutting-edge AI and machine learning projects within a dynamic team. This role involves developing and deploying scalable software solutions that leverage our cloud infrastructure.',
     requiredSkills: ['Data analysis', 'Cloud computing', 'AI', 'Software dev', 'Python'],
-    salary: '₹50,000 - ₹70,000 /month'
+    salary: '₹35,000 - ₹50,000 /month'
   },
   {
     id: '2',
@@ -23,7 +23,7 @@ export const internships: Internship[] = [
     location: 'Bangalore, KA',
     description: 'Gain experience in a leading IT services company. You will contribute to live projects, utilizing skills in Java, Python, and cloud platforms to deliver robust solutions for global clients.',
     requiredSkills: ['Java', 'Python', 'cloud', 'DevOps', 'AI/ML', 'web dev'],
-    salary: '₹45,000 - ₹65,000 /month'
+    salary: '₹40,000 - ₹50,000 /month'
   },
   {
     id: '3',
@@ -33,7 +33,7 @@ export const internships: Internship[] = [
     location: 'Mumbai, MH',
     description: 'Join our finance analytics team to work on data-driven projects. You will use Python and data analytics tools to provide insights and support our cybersecurity and cloud initiatives.',
     requiredSkills: ['Python', 'data analytics', 'cybersecurity', 'cloud'],
-    salary: '₹55,000 - ₹75,000 /month'
+    salary: '₹30,000 - ₹45,000 /month'
   },
   {
     id: '4',
@@ -43,7 +43,7 @@ export const internships: Internship[] = [
     location: 'Pune, MH',
     description: 'An exciting opportunity to work with our cloud services team. You will be involved in Agile development cycles, helping to build and maintain cloud infrastructure using modern DevOps practices.',
     requiredSkills: ['Java', 'Python', 'AI', 'cloud', 'Agile', 'DevOps'],
-    salary: '₹40,000 - ₹60,000 /month'
+    salary: '₹40,000 - ₹50,000 /month'
   },
   {
     id: '5',
@@ -53,7 +53,7 @@ export const internships: Internship[] = [
     location: 'Bangalore, KA',
     description: 'Be part of our AI innovation lab. This internship focuses on developing and testing new AI/ML models. Proficiency in Python and JavaScript is required.',
     requiredSkills: ['Cloud', 'AI/ML', 'Python', 'JavaScript', 'Agile'],
-    salary: '₹50,000 - ₹70,000 /month'
+    salary: '₹35,000 - ₹48,000 /month'
   },
   {
     id: '6',
@@ -63,7 +63,7 @@ export const internships: Internship[] = [
     location: 'Remote',
     description: 'Contribute to our digital banking platform. You will work on software development projects using Python and cloud technologies to enhance our customer experience.',
     requiredSkills: ['Python', 'data analytics', 'software dev', 'cloud'],
-    salary: '₹50,000 - ₹65,000 /month'
+    salary: '₹30,000 - ₹40,000 /month'
   },
   {
     id: '7',
@@ -73,7 +73,7 @@ export const internships: Internship[] = [
     location: 'Gurgaon, HR',
     description: 'Join our network infrastructure team to manage and optimize our telecom services. Experience with cloud infrastructure and Python is essential for this role.',
     requiredSkills: ['Network management', 'cloud infrastructure', 'Python'],
-    salary: '₹45,000 - ₹60,000 /month'
+    salary: '₹25,000 - ₹40,000 /month'
   },
   {
     id: '8',
@@ -83,7 +83,7 @@ export const internships: Internship[] = [
     location: 'Chennai, TN',
     description: 'Explore the intersection of technology and construction. This role involves project management and implementing IoT and automation solutions on major engineering projects.',
     requiredSkills: ['Project management', 'IoT', 'automation'],
-    salary: '₹40,000 - ₹55,000 /month'
+    salary: '₹20,000 - ₹35,000 /month'
   },
   {
     id: '9',
@@ -93,7 +93,7 @@ export const internships: Internship[] = [
     location: 'Noida, UP',
     description: 'Work with our cloud computing team to design and implement solutions for clients. This role requires knowledge of RPA, Python, and Java.',
     requiredSkills: ['Cloud computing', 'RPA', 'Python', 'Java'],
-    salary: '₹45,000 - ₹65,000 /month'
+    salary: '₹30,000 - ₹45,000 /month'
   },
   {
     id: '10',
@@ -103,7 +103,7 @@ export const internships: Internship[] = [
     location: 'Ahmedabad, GJ',
     description: 'Join a diversified conglomerate and contribute to data-driven decision-making. This role involves data analytics and project management across various business verticals.',
     requiredSkills: ['Data analytics', 'project management'],
-    salary: '₹50,000 - ₹70,000 /month'
+    salary: '₹25,000 - ₹35,000 /month'
   },
   {
     id: '11',
@@ -113,7 +113,7 @@ export const internships: Internship[] = [
     location: 'Mumbai, MH',
     description: 'A role within our security team to protect banking systems. Requires knowledge of Python, security protocols, and AI-driven threat analysis.',
     requiredSkills: ['Python', 'security', 'analytics', 'AI'],
-    salary: '₹60,000 - ₹80,000 /month'
+    salary: '₹35,000 - ₹50,000 /month'
   },
   {
     id: '12',
@@ -123,7 +123,7 @@ export const internships: Internship[] = [
     location: 'Gurgaon, HR',
     description: 'Work on connected car technologies. This internship involves developing IoT solutions and embedded systems for our next-generation vehicles.',
     requiredSkills: ['IoT', 'embedded systems', 'Python', 'process automation'],
-    salary: '₹45,000 - ₹60,000 /month'
+    salary: '₹30,000 - ₹45,000 /month'
   },
   {
     id: '13',
@@ -133,7 +133,7 @@ export const internships: Internship[] = [
     location: 'Mumbai, MH',
     description: 'Innovate in the agri-tech space by working on embedded systems, IoT, and machine learning solutions for our farm equipment division.',
     requiredSkills: ['Embedded systems', 'IoT', 'machine learning'],
-    salary: '₹45,000 - ₹65,000 /month'
+    salary: '₹28,000 - ₹42,000 /month'
   },
   {
     id: '14',
@@ -143,7 +143,7 @@ export const internships: Internship[] = [
     location: 'Pune, MH',
     description: 'Utilize your data science skills in the financial services sector. This role involves working with Python and cloud infrastructure to build predictive models.',
     requiredSkills: ['Python', 'data science', 'cloud infrastructure'],
-    salary: '₹55,000 - ₹75,000 /month'
+    salary: '₹32,000 - ₹48,000 /month'
   },
   {
     id: '15',
@@ -153,7 +153,7 @@ export const internships: Internship[] = [
     location: 'Pune, MH',
     description: 'A role focused on applying AI/ML to the telecom industry. You will work on projects related to network optimization and security.',
     requiredSkills: ['Cloud computing', 'AI/ML', 'Python', 'security'],
-    salary: '₹50,000 - ₹70,000 /month'
+    salary: '₹35,000 - ₹50,000 /month'
   },
   {
     id: '16',
@@ -163,7 +163,7 @@ export const internships: Internship[] = [
     location: 'Hyderabad, TS',
     description: 'Join our team in Hyderabad to work on cutting-edge cloud solutions. This internship provides hands-on experience with major cloud platforms and DevOps practices.',
     requiredSkills: ['Cloud', 'Java', 'AI/ML', 'DevOps'],
-    salary: '₹50,000 - ₹65,000 /month'
+    salary: '₹35,000 - ₹45,000 /month'
   }
 ];
 
@@ -198,7 +198,9 @@ export let studentProfile: StudentProfile = {
     skills: ['Data Analysis', 'Market Research', 'Agile Methodologies', 'UI/UX Principles', 'SQL', 'Python'],
     qualifications: 'Currently pursuing a B.Tech in Computer Science from a top Indian university. Completed several projects on product design and market analysis. Strong analytical and problem-solving skills.',
     preferences: 'Interested in B2C products, preferably in the fintech or e-commerce sectors. Open to remote or hybrid roles in major tech hubs like Bangalore or Mumbai.',
-    expectedSalary: '₹60,000 /month'
+    expectedSalary: '₹30,000 /month'
 }
+
+    
 
     
