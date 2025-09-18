@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useState, useEffect, ReactNode } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type AuthContextType = {
@@ -27,23 +28,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const value = { user, loading };
 
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen">
+          <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+              <div className="container flex h-16 items-center">
+                  <Skeleton className="h-8 w-32" />
+                  <div className="flex flex-1 items-center justify-end space-x-4">
+                      <Skeleton className="h-8 w-24" />
+                  </div>
+              </div>
+          </header>
+          <main className="flex-grow container mx-auto p-4">
+              <Skeleton className="h-96 w-full" />
+          </main>
+      </div>
+    );
+  }
+
   return (
     <AuthContext.Provider value={value}>
-      {loading ? (
-        <div className="flex flex-col min-h-screen">
-            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <div className="container flex h-14 items-center">
-                    <Skeleton className="h-8 w-32" />
-                    <div className="flex flex-1 items-center justify-end space-x-4">
-                        <Skeleton className="h-8 w-24" />
-                    </div>
-                </div>
-            </header>
-            <main className="flex-grow container mx-auto p-4">
-                <Skeleton className="h-96 w-full" />
-            </main>
-        </div>
-      ) : children}
+      {children}
     </AuthContext.Provider>
   );
 }
