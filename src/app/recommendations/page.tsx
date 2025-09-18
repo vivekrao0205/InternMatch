@@ -9,17 +9,20 @@ import { Sparkles, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import AuthGuard from '@/components/auth-guard';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 
 function RecommendationsPageContent() {
   const [recommendations, setRecommendations] = useState<AIInternshipMatchingOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [skills, setSkills] = useState('Python, Data Analysis, Cloud Computing, AI');
 
   const handleGenerate = async () => {
     setIsLoading(true);
     setError(null);
     setRecommendations(null);
-    const result = await getInternshipRecommendations();
+    const result = await getInternshipRecommendations(skills);
     if (result.success) {
       setRecommendations(result.data);
     } else {
@@ -35,9 +38,22 @@ function RecommendationsPageContent() {
             <Sparkles className="mx-auto h-12 w-12 text-accent mb-4" />
             <h1 className="text-4xl font-headline font-bold">AI-Powered Recommendations</h1>
             <p className="text-muted-foreground mt-2">
-              Discover your top 3 internship matches based on your profile. Our AI analyzes your skills and preferences to find the perfect fit.
+              Enter your skills below to discover your top 3 internship matches. Our AI analyzes your skills to find the perfect fit.
             </p>
-            <Button onClick={handleGenerate} disabled={isLoading} size="lg" className="mt-8">
+            
+            <div className="mt-8 text-left max-w-lg mx-auto">
+              <Label htmlFor="skills-input" className="font-semibold">Your Skills</Label>
+              <Textarea 
+                id="skills-input"
+                placeholder="e.g. Python, Data Analysis, Cloud Computing, AI"
+                value={skills}
+                onChange={(e) => setSkills(e.target.value)}
+                className="mt-2 min-h-[100px] text-base"
+              />
+               <p className="text-sm text-muted-foreground mt-2">Enter skills, separated by commas.</p>
+            </div>
+
+            <Button onClick={handleGenerate} disabled={isLoading || !skills} size="lg" className="mt-6">
               <Sparkles className="mr-2 h-5 w-5" />
               {isLoading ? 'Generating...' : 'Find My Matches'}
             </Button>
@@ -76,7 +92,7 @@ function RecommendationsPageContent() {
                 <Card className="text-center py-12 border-dashed">
                     <CardContent>
                         <h3 className="text-xl font-semibold">Ready to find your match?</h3>
-                        <p className="text-muted-foreground mt-2">Click the button above to generate your personalized recommendations.</p>
+                        <p className="text-muted-foreground mt-2">Enter your skills and click the button above to generate personalized recommendations.</p>
                     </CardContent>
                 </Card>
             )}
