@@ -151,7 +151,7 @@ export const internships: Internship[] = [
   }
 ];
 
-export const applications: Application[] = [
+export let applications: Application[] = [
   {
     id: 'app1',
     studentId: 'user123',
@@ -175,7 +175,7 @@ export const applications: Application[] = [
   },
 ];
 
-export const studentProfile: StudentProfile = {
+export let studentProfile: StudentProfile = {
     id: 'user123',
     name: 'Priya Sharma',
     email: 'priya.sharma@example.com',

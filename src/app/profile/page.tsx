@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -17,9 +18,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { studentProfile as mockProfile } from '@/lib/data';
+import { studentProfile } from '@/lib/data';
 import { User, Save } from 'lucide-react';
 import AuthGuard from '@/components/auth-guard';
+import { useEffect } from 'react';
 
 
 const profileSchema = z.object({
@@ -38,17 +40,35 @@ function ProfilePageContent() {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      name: mockProfile.name,
-      email: mockProfile.email,
-      skills: mockProfile.skills.join(', '),
-      qualifications: mockProfile.qualifications,
-      preferences: mockProfile.preferences,
+      name: '',
+      email: '',
+      skills: '',
+      qualifications: '',
+      preferences: '',
     },
     mode: 'onChange',
   });
+  
+  useEffect(() => {
+    form.reset({
+      name: studentProfile.name,
+      email: studentProfile.email,
+      skills: studentProfile.skills.join(', '),
+      qualifications: studentProfile.qualifications,
+      preferences: studentProfile.preferences,
+    });
+  }, [form]);
+
 
   async function onSubmit(data: ProfileFormValues) {
-    console.log("Saving profile data:", data); // In a real app, this would be an API call
+    // Update the mock data object
+    studentProfile.name = data.name;
+    studentProfile.skills = data.skills.split(',').map(s => s.trim());
+    studentProfile.qualifications = data.qualifications;
+    studentProfile.preferences = data.preferences;
+    
+    console.log("Updated profile data:", studentProfile);
+
     toast({
       title: 'Profile Updated!',
       description: 'Your profile has been successfully saved.',
@@ -150,7 +170,7 @@ function ProfilePageContent() {
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" disabled={form.formState.isSubmitting}>
+                    <Button type="submit" disabled={!form.formState.isDirty || form.formState.isSubmitting}>
                       <Save className="mr-2 h-4 w-4" />
                       {form.formState.isSubmitting ? 'Saving...' : 'Save Changes'}
                     </Button>
