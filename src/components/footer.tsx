@@ -16,17 +16,6 @@ export default function Footer() {
             <Link href="/about" className="hover:text-primary transition-colors">About</Link>
             <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
           </nav>
-          <div className="flex items-center space-x-4">
-            <Link href="#" aria-label="Twitter">
-              <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
-            <Link href="#" aria-label="GitHub">
-              <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
-            <Link href="#" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-            </Link>
-          </div>
         </div>
         <div className="text-center text-sm text-muted-foreground mt-8 border-t pt-4">
           © {new Date().getFullYear()} PMInternMatch. All Rights Reserved.
