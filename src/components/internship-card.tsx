@@ -38,8 +38,8 @@ export default function InternshipCard({ internship }: InternshipCardProps) {
           </div>
         )}
         <div className="flex-grow">
-          <CardTitle><p className="text-xl font-headline leading-tight">{internship.title}</p></CardTitle>
-          <CardDescription><p className="text-base">{internship.company}</p></CardDescription>
+          <CardTitle className="text-xl font-headline leading-tight">{internship.title}</CardTitle>
+          <CardDescription className="text-base">{internship.company}</CardDescription>
         </div>
       </CardHeader>
       <CardContent className="p-4 flex-grow">

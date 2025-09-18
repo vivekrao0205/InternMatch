@@ -39,8 +39,8 @@ function ApplicationCard({ application }: { application: Application }) {
             <div className="flex-grow">
               <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle><p>{application.internship.title}</p></CardTitle>
-                    <CardDescription><p>{application.internship.company} &middot; {application.internship.location}</p></CardDescription>
+                    <CardTitle>{application.internship.title}</CardTitle>
+                    <CardDescription>{application.internship.company} &middot; {application.internship.location}</CardDescription>
                   </div>
                   <Badge variant={getStatusVariant(application.status)} className="ml-4 whitespace-nowrap">{application.status}</Badge>
               </div>
@@ -109,7 +109,7 @@ function DashboardPageContent() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle><p>Total Applications</p></CardTitle>
+              <CardTitle>Total Applications</CardTitle>
               <Briefcase className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -118,7 +118,7 @@ function DashboardPageContent() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle><p>Interviews</p></CardTitle>
+              <CardTitle>Interviews</CardTitle>
               <FileCheck className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -127,7 +127,7 @@ function DashboardPageContent() {
           </Card>
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle><p>Offers</p></CardTitle>
+              <CardTitle>Offers</CardTitle>
               <Award className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -137,7 +137,7 @@ function DashboardPageContent() {
            {totalApplications > 0 && (
             <Card className="md:col-span-2 lg:col-span-1">
                 <CardHeader className="items-center pb-0">
-                    <CardTitle><p>Application Status</p></CardTitle>
+                    <CardTitle>Application Status</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1 pb-0">
                     <ChartContainer
