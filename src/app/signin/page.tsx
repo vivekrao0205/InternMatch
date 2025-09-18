@@ -2,12 +2,13 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, getRedirectResult } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Logo } from '@/components/icons';
+import { useToast } from '@/hooks/use-toast';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px" {...props}>
@@ -21,6 +22,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function SignInPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!loading && user) {
@@ -32,9 +34,14 @@ export default function SignInPage() {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-    } catch (error) {
+      // After popup is successful, the onAuthStateChanged listener will trigger the useEffect above
+    } catch (error: any) {
       console.error('Error signing in with Google', error);
-      // You could show a toast notification here
+      toast({
+        title: 'Sign-in Failed',
+        description: error.message,
+        variant: 'destructive'
+      })
     }
   };
   
