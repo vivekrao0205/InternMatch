@@ -14,7 +14,6 @@ import {
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { useAuth } from '@/context/auth-provider';
-import { signOut } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 
 
@@ -30,12 +29,7 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, loading } = useAuth();
-
-  const handleSignOut = async () => {
-    await signOut();
-    router.push('/');
-  }
+  const { user, loading, signOut: handleSignOut } = useAuth();
 
   const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => {
     const visibleItems = navItems.filter(item => !item.auth || (item.auth && user));
@@ -56,7 +50,7 @@ export default function Header() {
         </Link>
       ))}
       {!loading && user && (
-        <Button variant={isMobile ? "default" : "ghost"} onClick={handleSignOut} className="flex items-center gap-2">
+        <Button variant={isMobile ? "default" : "ghost"} onClick={() => { handleSignOut(); router.push('/')}} className="flex items-center gap-2">
            <LogOut className="h-4 w-4" />
            Sign Out
         </Button>

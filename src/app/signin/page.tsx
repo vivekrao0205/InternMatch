@@ -18,7 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { LogIn } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '@/context/auth-provider';
 
 
@@ -32,13 +32,13 @@ type SignInFormValues = z.infer<typeof formSchema>;
 export default function SignInPage() {
   const { toast } = useToast();
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, signIn } = useAuth();
   
   useEffect(() => {
-    if (!loading && user) {
+    if (user) {
       router.push('/dashboard');
     }
-  }, [user, loading, router]);
+  }, [user, router]);
 
 
   const form = useForm<SignInFormValues>({
@@ -51,6 +51,7 @@ export default function SignInPage() {
   });
 
   async function onSubmit(data: SignInFormValues) {
+    signIn();
     toast({
       title: 'Signed In!',
       description: 'Welcome back! You have been successfully signed in.',
@@ -58,8 +59,8 @@ export default function SignInPage() {
     router.push('/dashboard');
   }
 
-  if (loading || user) {
-    return <div className="flex justify-center items-center h-screen"><p>Loading...</p></div>;
+  if (user) {
+    return <div className="flex justify-center items-center h-screen"><p>Redirecting...</p></div>;
   }
 
   return (

@@ -36,13 +36,13 @@ type SignUpFormValues = z.infer<typeof formSchema>;
 export default function SignUpPage() {
   const { toast } = useToast();
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, signIn } = useAuth();
 
   useEffect(() => {
-    if (!loading && user) {
+    if (user) {
       router.push('/dashboard');
     }
-  }, [user, loading, router]);
+  }, [user, router]);
 
 
   const form = useForm<SignUpFormValues>({
@@ -56,6 +56,7 @@ export default function SignUpPage() {
   });
 
   async function onSubmit(data: SignUpFormValues) {
+    signIn();
     toast({
       title: 'Account Created!',
       description: "You've been successfully signed up. Welcome!",
@@ -63,8 +64,8 @@ export default function SignUpPage() {
     router.push('/dashboard');
   }
 
-  if (loading || user) {
-    return <div className="flex justify-center items-center h-screen"><p>Loading...</p></div>;
+  if (user) {
+    return <div className="flex justify-center items-center h-screen"><p>Redirecting...</p></div>;
   }
 
   return (
