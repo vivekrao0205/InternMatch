@@ -1,6 +1,5 @@
 'use client';
 
-import AuthGuard from '@/components/auth-guard';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { getInternshipRecommendations } from '@/lib/actions';
@@ -10,7 +9,7 @@ import { Sparkles, AlertTriangle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-function RecommendationsPageContent() {
+export default function RecommendationsPage() {
   const [recommendations, setRecommendations] = useState<AIInternshipMatchingOutput | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -81,13 +80,5 @@ function RecommendationsPageContent() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function RecommendationsPage() {
-  return (
-    <AuthGuard>
-      <RecommendationsPageContent />
-    </AuthGuard>
   );
 }

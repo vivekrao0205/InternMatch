@@ -1,5 +1,4 @@
 'use client';
-import AuthGuard from '@/components/auth-guard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { applications } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
@@ -56,7 +55,7 @@ function ApplicationCard({ application }: { application: Application }) {
     )
 }
 
-function DashboardPageContent() {
+export default function DashboardPage() {
   const totalApplications = applications.length;
   const interviewCount = applications.filter(app => app.status === 'Interview').length;
   const offeredCount = applications.filter(app => app.status === 'Offered').length;
@@ -184,13 +183,5 @@ function DashboardPageContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function DashboardPage() {
-  return (
-    <AuthGuard>
-      <DashboardPageContent />
-    </AuthGuard>
   );
 }

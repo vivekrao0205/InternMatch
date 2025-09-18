@@ -1,6 +1,5 @@
 'use client';
 
-import AuthGuard from '@/components/auth-guard';
 import { useState, useMemo } from 'react';
 import InternshipCard from '@/components/internship-card';
 import { internships as allInternships } from '@/lib/data';
@@ -8,11 +7,12 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 const uniqueSkills = [...new Set(allInternships.flatMap(i => i.requiredSkills))].sort();
 const uniqueLocations = [...new Set(allInternships.map(i => i.location))].sort();
 
-function InternshipsPageContent() {
+export default function InternshipsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSkill, setSelectedSkill] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
@@ -99,13 +99,5 @@ function InternshipsPageContent() {
         </div>
       )}
     </div>
-  );
-}
-
-export default function InternshipsPage() {
-  return (
-    <AuthGuard>
-      <InternshipsPageContent />
-    </AuthGuard>
   );
 }

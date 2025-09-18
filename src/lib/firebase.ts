@@ -1,5 +1,4 @@
 import { initializeApp, getApps, getApp, type FirebaseOptions } from "firebase/app";
-import { getAuth } from "firebase/auth";
 
 const firebaseConfig: FirebaseOptions = {
   "projectId": "studio-144960523-e2f7c",
@@ -13,6 +12,5 @@ const firebaseConfig: FirebaseOptions = {
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
 
-export { app, auth };
+export { app };

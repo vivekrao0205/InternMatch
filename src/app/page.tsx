@@ -41,7 +41,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                <Link href="/signin">Get Started</Link>
+                <Link href="/dashboard">Get Started</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="/internships">Browse Internships</Link>
@@ -84,7 +84,7 @@ export default function Home() {
             Join a growing community of aspiring product managers. Create your profile today and let opportunity find you.
           </p>
           <Button asChild size="lg" className="mt-8 bg-accent hover:bg-accent/90 text-accent-foreground">
-            <Link href="/signin">Sign Up for Free</Link>
+            <Link href="/dashboard">Get Started for Free</Link>
           </Button>
         </div>
       </section>

@@ -3,21 +3,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogIn, LogOut, User, LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield } from 'lucide-react';
-import { useAuth } from '@/hooks/use-auth';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { LayoutDashboard, Briefcase, Sparkles, PlusCircle, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Logo } from './icons';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
 import { cn } from '@/lib/utils';
 import {
   Sheet,
@@ -26,16 +14,7 @@ import {
 } from "@/components/ui/sheet"
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
-import AuthButton from './auth-button';
 
-
-const handleSignOut = async () => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error('Error signing out', error);
-  }
-};
 
 const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
@@ -46,7 +25,6 @@ const navItems = [
 ];
 
 export default function Header() {
-  const { user } = useAuth();
   const pathname = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -77,56 +55,9 @@ export default function Header() {
           <span className="font-bold font-headline">PMInternMatch</span>
         </Link>
         
-        {user && <NavLinks />}
+        <NavLinks />
 
         <div className="flex flex-1 items-center justify-end space-x-4">
-          {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? ''} />
-                    <AvatarFallback>{user.displayName?.charAt(0) ?? 'U'}</AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{user.displayName}</p>
-                    <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Profile</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard">
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
-                    <span>Dashboard</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            pathname !== '/signin' && (
-                <AuthButton>
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Sign In
-                </AuthButton>
-            )
-          )}
-
-          {user && (
             <Sheet open={isMobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">
@@ -142,7 +73,6 @@ export default function Header() {
                 <NavLinks isMobile />
               </SheetContent>
             </Sheet>
-          )}
         </div>
       </div>
     </header>

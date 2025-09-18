@@ -1,7 +1,5 @@
 'use client';
 
-import AuthGuard from '@/components/auth-guard';
-import { useAuth } from '@/hooks/use-auth';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -32,15 +30,14 @@ const profileSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
 
-function ProfilePageContent() {
-  const { user } = useAuth();
+export default function ProfilePage() {
   const { toast } = useToast();
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      name: user?.displayName ?? mockProfile.name,
-      email: user?.email ?? mockProfile.email,
+      name: mockProfile.name,
+      email: mockProfile.email,
       skills: mockProfile.skills.join(', '),
       qualifications: mockProfile.qualifications,
       preferences: mockProfile.preferences,
@@ -93,7 +90,7 @@ function ProfilePageContent() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="e.g. jane.doe@email.com" {...field} readOnly />
+                          <Input type="email" placeholder="e.g. jane.doe@email.com" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -160,13 +157,5 @@ function ProfilePageContent() {
         </Card>
       </div>
     </div>
-  );
-}
-
-export default function ProfilePage() {
-  return (
-    <AuthGuard>
-      <ProfilePageContent />
-    </AuthGuard>
   );
 }

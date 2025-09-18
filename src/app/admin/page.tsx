@@ -1,13 +1,12 @@
 'use client';
 
-import AuthGuard from '@/components/auth-guard';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { studentProfile, internships } from '@/lib/data';
 import { User, Briefcase } from 'lucide-react';
 import StudentProfilesTable from './_components/student-profiles-table';
 import InternshipListingsTable from './_components/internship-listings-table';
 
-function AdminPageContent() {
+export default function AdminPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-8">
@@ -47,15 +46,5 @@ function AdminPageContent() {
         </Card>
       </div>
     </div>
-  );
-}
-
-export default function AdminPage() {
-  // In a real app, you'd want to protect this route for admin users only.
-  // We'll use the standard AuthGuard for now.
-  return (
-    <AuthGuard>
-      <AdminPageContent />
-    </AuthGuard>
   );
 }

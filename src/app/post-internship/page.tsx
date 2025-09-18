@@ -1,6 +1,5 @@
 'use client';
 
-import AuthGuard from '@/components/auth-guard';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -31,7 +30,7 @@ const internshipSchema = z.object({
 
 type InternshipFormValues = z.infer<typeof internshipSchema>;
 
-function PostInternshipPageContent() {
+export default function PostInternshipPage() {
   const { toast } = useToast();
 
   const form = useForm<InternshipFormValues>({
@@ -166,13 +165,5 @@ function PostInternshipPageContent() {
         </Card>
       </div>
     </div>
-  );
-}
-
-export default function PostInternshipPage() {
-  return (
-    <AuthGuard>
-      <PostInternshipPageContent />
-    </AuthGuard>
   );
 }
