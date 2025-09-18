@@ -1,16 +1,25 @@
+
+'use client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from './ui/button';
 import { AIInternshipMatchingOutput } from '@/ai/flows/ai-internship-matching';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 type Recommendation = AIInternshipMatchingOutput['topInternships'][0];
 
 const CircleProgress = ({ value }: { value: number }) => {
   const radius = 30;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+  const [offset, setOffset] = useState(circumference);
+
+  useEffect(() => {
+    const progressOffset = circumference - (value / 100) * circumference;
+    setOffset(progressOffset);
+  }, [value, circumference]);
+
 
   let colorClass = 'text-destructive';
   if (value >= 85) {
