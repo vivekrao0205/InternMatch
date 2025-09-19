@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -21,8 +22,18 @@ function RecommendationsPageContent() {
     setIsLoading(true);
     setError(null);
     setRecommendations(null);
-    const {id, email, ...profileData} = studentProfile;
+    
+    // Create a fresh copy of the profile data to ensure the latest updates are used.
+    const profileData = {
+      name: studentProfile.name,
+      skills: studentProfile.skills,
+      qualifications: studentProfile.qualifications,
+      preferences: studentProfile.preferences,
+      expectedSalary: studentProfile.expectedSalary,
+    };
+    
     const result = await getInternshipRecommendations(profileData);
+
     if (result.success) {
       setRecommendations(result.data);
     } else {
@@ -33,6 +44,7 @@ function RecommendationsPageContent() {
   
   useEffect(() => {
     handleGenerate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
