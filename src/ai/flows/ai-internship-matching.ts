@@ -16,8 +16,8 @@
  * @exports `AIInternshipMatchingOutput` - The output type for the flow.
  */
 
-import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+
 
 // Define the input schema
 const AIInternshipMatchingInputSchema = z.object({
@@ -31,7 +31,7 @@ const AIInternshipMatchingInputSchema = z.object({
 export type AIInternshipMatchingInput = z.infer<typeof AIInternshipMatchingInputSchema>;
 
 // Define the output schema
-const AIInternshipMatchingOutputSchema = z.object({
+export const AIInternshipMatchingOutputSchema = z.object({
   topInternships: z.array(
     z.object({
       title: z.string().describe('The title of the internship.'),
@@ -45,65 +45,7 @@ const AIInternshipMatchingOutputSchema = z.object({
 export type AIInternshipMatchingOutput = z.infer<typeof AIInternshipMatchingOutputSchema>;
 
 
-// Exported function to call the flow
+// This is a placeholder function, the actual logic is in actions.ts
 export async function aiInternshipMatching(input: AIInternshipMatchingInput): Promise<AIInternshipMatchingOutput> {
-  return aiInternshipMatchingFlow(input);
+  return { topInternships: [] };
 }
-
-// Define the prompt
-const aiInternshipMatchingPrompt = ai.definePrompt({
-  name: 'aiInternshipMatchingPrompt',
-  input: {schema: AIInternshipMatchingInputSchema},
-  output: {schema: AIInternshipMatchingOutputSchema},
-  prompt: `You are an AI-powered internship matching tool. You will receive a student profile and a list of available internships. Your task is to identify the top 3 internships that best match the student's profile based on their skills, qualifications, and preferences.
-
-Student Profile:
-{{studentProfile}}
-
-Internship List:
-{{internshipList}}
-
-For each internship, provide a match score (out of 100) indicating how well it aligns with the student's profile and the reason for your score.
-
-Return the top 3 internships with the highest match scores.
-
-Output format: 
-{
-  "topInternships": [
-    {
-      "title": "Internship Title 1",
-      "company": "Company Name 1",
-      "matchScore": 95,
-      "reason": "This internship is a great match because...",
-      "salary": "₹50,000 - ₹70,000 /month"
-    },
-    {
-      "title": "Internship Title 2",
-      "company": "Company Name 2",
-      "matchScore": 90,
-      "reason": "This internship is a good match because...",
-       "salary": "₹45,000 - ₹65,000 /month"
-    },
-    {
-      "title": "Internship Title 3",
-      "company": "Company Name 3",
-      "matchScore": 85,
-      "reason": "This internship is a potential match because...",
-      "salary": "₹55,000 - ₹75,000 /month"
-    }
-  ]
-}`,
-});
-
-// Define the flow
-const aiInternshipMatchingFlow = ai.defineFlow(
-  {
-    name: 'aiInternshipMatchingFlow',
-    inputSchema: AIInternshipMatchingInputSchema,
-    outputSchema: AIInternshipMatchingOutputSchema,
-  },
-  async input => {
-    const {output} = await aiInternshipMatchingPrompt(input);
-    return output!;
-  }
-);
