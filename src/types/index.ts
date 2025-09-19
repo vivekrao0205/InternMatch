@@ -21,7 +21,7 @@ export type Internship = {
 
 export type Application = {
   id: string;
-  internship: Internship;
+  internshipId: string;
   studentId: string;
   status: 'Applied' | 'Under Review' | 'Interview' | 'Offered' | 'Rejected';
   appliedDate: string;

@@ -171,21 +171,21 @@ export let applications: Application[] = [
   {
     id: 'app1',
     studentId: 'user123',
-    internship: internships[0], // Reliance
+    internshipId: '1',
     status: 'Under Review',
     appliedDate: '2024-07-15',
   },
   {
     id: 'app2',
     studentId: 'user123',
-    internship: internships[2], // HDFC
+    internshipId: '3',
     status: 'Applied',
     appliedDate: '2024-07-20',
   },
   {
     id: 'app3',
     studentId: 'user123',
-    internship: internships[4], // Wipro
+    internshipId: '5',
     status: 'Interview',
     appliedDate: '2024-07-10',
   },
@@ -200,7 +200,3 @@ export let studentProfile: StudentProfile = {
     preferences: 'Interested in B2C products, preferably in the fintech or e-commerce sectors. Open to remote or hybrid roles in major tech hubs like Bangalore or Mumbai.',
     expectedSalary: '₹30,000 /month'
 }
-
-    
-
-    

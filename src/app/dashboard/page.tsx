@@ -1,12 +1,12 @@
 
 'use client';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { applications, studentProfile } from '@/lib/data';
+import { applications, studentProfile, internships } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import type { Application } from '@/types';
+import type { Application, Internship } from '@/types';
 import { cn } from '@/lib/utils';
 import { ArrowRight, Briefcase, FileCheck, Award, Sparkles } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartPie, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
@@ -43,7 +43,7 @@ function FormattedDate({ dateString }: { dateString: string }) {
 }
 
 
-function ApplicationCard({ application }: { application: Application }) {
+function ApplicationCard({ application }: { application: Application & { internship: Internship } }) {
     return (
       <Card className="hover:shadow-md transition-shadow duration-300">
         <CardContent className="p-6 flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -84,11 +84,16 @@ function DashboardPageContent() {
     fetchRecommendations();
   }, []);
 
-  const totalApplications = applications.length;
-  const interviewCount = applications.filter(app => app.status === 'Interview').length;
-  const offeredCount = applications.filter(app => app.status === 'Offered').length;
+  const enrichedApplications = applications.map(app => {
+    const internship = internships.find(i => i.id === app.internshipId);
+    return { ...app, internship: internship! };
+  });
 
-  const statusCounts = applications.reduce((acc, app) => {
+  const totalApplications = enrichedApplications.length;
+  const interviewCount = enrichedApplications.filter(app => app.status === 'Interview').length;
+  const offeredCount = enrichedApplications.filter(app => app.status === 'Offered').length;
+
+  const statusCounts = enrichedApplications.reduce((acc, app) => {
     acc[app.status] = (acc[app.status] || 0) + 1;
     return acc;
   }, {} as Record<Application['status'], number>);
@@ -197,8 +202,8 @@ function DashboardPageContent() {
             <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
               <div className="xl:col-span-2 space-y-6">
                  <h2 className="text-2xl font-headline font-bold">My Applications</h2>
-                {applications.length > 0 ? (
-                    applications.map(app => <ApplicationCard key={app.id} application={app} />)
+                {enrichedApplications.length > 0 ? (
+                    enrichedApplications.map(app => <ApplicationCard key={app.id} application={app} />)
                 ) : (
                     <Card className="text-center py-12">
                         <CardContent>

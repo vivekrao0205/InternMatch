@@ -15,14 +15,7 @@ function formatStudentProfile(profile: Omit<StudentProfile, 'id' | 'email'>): st
 }
 
 function formatInternshipList(list: Internship[]): string {
-  return list.map(internship => `
-- Internship Title: ${internship.title}
-- Company: ${internship.company}
-- Location: ${internship.location}
-- Description: ${internship.description}
-- Required Skills: ${internship.requiredSkills.join(', ')}
-- Salary: ${internship.salary}
-  `.trim()).join('\n\n');
+  return list.map(internship => JSON.stringify(internship)).join('\n');
 }
 
 export async function getInternshipRecommendations(profile: Omit<StudentProfile, 'id' | 'email'>): Promise<{ success: true, data: AIInternshipMatchingOutput } | { success: false, error: string }> {
