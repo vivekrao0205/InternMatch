@@ -4,8 +4,11 @@ export type StudentProfile = {
   email: string;
   skills: string[];
   qualifications: string;
-  preferences: string;
+  locationPreference: string;
   expectedSalary: string;
+  cgpa: string;
+  college: string;
+  phoneNumber: string;
 };
 
 export type Internship = {

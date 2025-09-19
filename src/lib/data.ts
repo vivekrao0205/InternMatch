@@ -4,6 +4,38 @@ import placeholderData from './placeholder-images.json';
 
 export const placeholderImages: ImagePlaceholder[] = placeholderData.placeholderImages;
 
+export const availableSkills = [
+  'Data analysis',
+  'Cloud computing',
+  'AI',
+  'Software dev',
+  'Python',
+  'Java',
+  'cloud',
+  'DevOps',
+  'AI/ML',
+  'web dev',
+  'data analytics',
+  'cybersecurity',
+  'Agile',
+  'JavaScript',
+  'Network management',
+  'cloud infrastructure',
+  'Project management',
+  'IoT',
+  'automation',
+  'RPA',
+  'security',
+  'embedded systems',
+  'process automation',
+  'machine learning',
+  'data science',
+  'UI/UX Principles',
+  'Market Research',
+  'SQL',
+];
+
+
 export const internships: Internship[] = [
   {
     id: '1',
@@ -197,6 +229,9 @@ export let studentProfile: StudentProfile = {
     email: 'priya.sharma@example.com',
     skills: ['Data Analysis', 'Market Research', 'Agile Methodologies', 'UI/UX Principles', 'SQL', 'Python'],
     qualifications: 'Currently pursuing a B.Tech in Computer Science from a top Indian university. Completed several projects on product design and market analysis. Strong analytical and problem-solving skills.',
-    preferences: 'Interested in B2C products, preferably in the fintech or e-commerce sectors. Open to remote or hybrid roles in major tech hubs like Bangalore or Mumbai.',
-    expectedSalary: '₹30,000 /month'
+    locationPreference: 'Hybrid',
+    expectedSalary: '₹30,000 /month',
+    cgpa: '8.5',
+    college: 'Indian Institute of Technology, Bombay',
+    phoneNumber: '+91 98765 43210'
 }
