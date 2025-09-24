@@ -4,7 +4,7 @@
 
 ---
 
-![Workflow](docs/workflow.png)
+![Workflow](docs/workflow.jpg)
 
 ## Overview
 
@@ -71,9 +71,3 @@ The **AI-Based Smart Allocation Engine** automates matching of students to inter
 2. Add reallocation handling.
 3. Integrate ML for fit prediction.
 4. Add dashboards & fairness audits.
-
----
-
-## License
-
-MIT License — see `LICENSE`.
