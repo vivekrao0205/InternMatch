@@ -4,7 +4,7 @@
 
 ---
 
-![Workflow](docs/workflow.jpg)
+![Workflow](docs/Workflow.jpg)
 
 ## Overview
 
